@@ -1,0 +1,42 @@
+{% extends 'base.html' %}
+
+{% load static %}
+
+{% block content %}
+
+<form method="POST">
+    {% csrf_token %}
+    <div class="form-row align-items-center mt-4">
+        <div class="col-auto">
+            <label class="sr-only" for="inlineFormInputGroup">Username</label>
+            <div class="input-group mb-2">
+                <input type="text" class="form-control" id="inlineFormInputGroup" placeholder="Enter Search" name="search">
+            </div>
+        </div>
+        <div class="col-auto">
+            <button type="submit" class="btn btn-primary mb-2">Submit</button>
+        </div>
+    </div>
+</form>
+
+<div class="row">
+    {% for video in videos %}
+        <div class="col">
+            <div class="card mt-4" style="width: 18rem;">
+                <img class="card-img-top" src="{{ video.thumbnail }}" alt="Card image cap">
+                <div class="card-body">
+                    <h5 class="card-title">{{ video.title }}</h5>
+                    <p class="card-text">{{ video.description }}</p>
+                    <a href="{{ video.url }}" class="btn btn-primary">View Video</a>
+                </div>
+            </div>
+        </div>
+    {% endfor %}
+
+</div>
+
+
+
+
+
+{% endblock %}
